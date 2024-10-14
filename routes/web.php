@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -7,4 +8,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+Route::get('/dashboard', [DashboardController::class, 'index']);
+
+// Route::get('categories', [CategoryController::class, 'index']);
+Route::resource('/categories', CategoryController::class)->only([
+    'index', 'store', 'update', 'destroy'
+]);
